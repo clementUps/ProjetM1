@@ -1,1 +1,5 @@
 /build
+*.class
+target
+.idea
+*.impl

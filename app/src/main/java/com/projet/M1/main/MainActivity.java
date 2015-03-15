@@ -1,4 +1,4 @@
-package servernode.example.com.projetm1;
+package com.projet.M1.main;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

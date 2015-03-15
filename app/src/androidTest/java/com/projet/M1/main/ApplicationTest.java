@@ -1,4 +1,4 @@
-package servernode.example.com.projetm1;
+package com.projet.M1.main;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
