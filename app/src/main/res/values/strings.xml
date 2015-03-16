@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProjetM1</string>
 
+    <string name="app_name">ProjetM1</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="creerModule">Créer un module</string>
@@ -8,4 +9,7 @@
     <string name="historiqueModules">Historique des modules lancés</string>
     <string name="credits">Crédits</string>
     <string name="titreApp">IFTT-IRIT</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imageNeoCampus">mipmap-xxhdpi/imageNeoCampus.png</string>
+
 </resources>
