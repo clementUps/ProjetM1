@@ -5,4 +5,6 @@ package com.projet.M1.action;
  */
 public abstract class Action {
     private String nom;
+
+    public  abstract void actionner();
 }

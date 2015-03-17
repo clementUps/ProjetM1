@@ -1,17 +1,58 @@
 package com.projet.M1.main;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.projet.M1.action.GestionMail;
+import com.projet.M1.evenement.Capteur;
+import com.projet.M1.evenement.Luminosite;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends Activity {
+
+    Sensor mLumiere = null;
+    SensorManager mSensorManager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Actionneur monActionneur = new Actionneur();
+        final Luminosite lumiere = new Luminosite("Luminosite", false, 30);
+        GestionMail envoieMail = new GestionMail();
+        lumiere.ajouterAction(envoieMail);
+        monActionneur.ajouterCapteur(lumiere);
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mLumiere = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        if(mLumiere == null)
+            Log.e("capteur", "Luminosite fail");
+
+        final SensorEventListener mLumiereSensorEventListener = new SensorEventListener() {
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+                Log.i("capteur","Luminosite precision"+accuracy );
+            }
+
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                Log.i("capteur"," Luminosite : "+sensorEvent.values[0]);
+                monActionneur.miseAJourCapteur(lumiere, sensorEvent.values[0]);
+                monActionneur.gererCapteur();
+            }
+        };
+
+        mSensorManager.registerListener(mLumiereSensorEventListener, mLumiere, SensorManager.SENSOR_DELAY_NORMAL);
+
+
     }
 
 

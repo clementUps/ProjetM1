@@ -12,11 +12,12 @@ public abstract class Capteur {
     private boolean opposite; //sert à savoir si la condition est un NOT
     private ArrayList<Action> actionAssoc;
     Conditions conditions; //selon cette condition on ira voir l'autre capteur
-    private Capteur capteur; //capteur associé pour une infinité de conditions
+    private Capteur capteur; //permet de gérer récurisevement les capteurs avec une infinité de conditions.
 
     public Capteur(String nom, boolean opposite) {
         this.nom = nom;
         this.opposite = opposite;
+        this.actionAssoc = new ArrayList<Action>();
     }
 
     public String getNom() {
@@ -39,10 +40,13 @@ public abstract class Capteur {
         return actionAssoc;
     }
 
-    public void setActionAssoc(ArrayList<Action> actionAssoc) {
-        this.actionAssoc = actionAssoc;
+    public void ajouterAction(Action action) {
+        actionAssoc.add(action);
     }
 
+    public void supprimerAction(Action action) {
+        actionAssoc.remove(action);
+    }
     public Conditions getConditions() {
         return conditions;
     }
@@ -58,4 +62,6 @@ public abstract class Capteur {
     public void setCapteur(Capteur capteur) {
         this.capteur = capteur;
     }
+
+    public abstract void initialiser();
 }
