@@ -13,5 +13,7 @@
     <string name="imageNeoCampus">mipmap-xxhdpi/imageNeoCampus.png</string>
     <string name="nouveauModule">Nouveau Module</string>
     <string name="plus">+</string>
+    <string name="newEvent">Nouvel évènement</string>
+    <string name="newAction">Nouvelle action</string>
 
 </resources>
