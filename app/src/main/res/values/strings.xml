@@ -12,5 +12,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imageNeoCampus">mipmap-xxhdpi/imageNeoCampus.png</string>
     <string name="nouveauModule">Nouveau Module</string>
+    <string name="plus">+</string>
 
 </resources>
