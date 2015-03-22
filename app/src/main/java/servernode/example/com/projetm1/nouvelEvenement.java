@@ -7,8 +7,13 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.projet.M1.main.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -28,6 +33,7 @@ public class nouvelEvenement extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Arrays arrayString;
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,6 +65,13 @@ public class nouvelEvenement extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            ArrayList<String> array= new ArrayList<String>();
+            array.add(mParam1);
+            array.add(mParam2);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
+                    R.layout.simple_list_item, array);
+            ListView listView = (ListView) this.getActivity().findViewById(R.id.listView);
+            listView.setAdapter(adapter);
         }
     }
 

@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:id="@+id/mainActivity">
 
     <Button
         android:layout_width="wrap_content"
@@ -12,7 +13,8 @@
         android:id="@+id/button8"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:onClick="menuEvenement"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,7 +25,7 @@
     <fragment
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:name="servernode.example.com.projetm1.fragment_ecran_titre"
+        android:name="servernode.example.com.projetm1.MenuFragment"
         android:id="@+id/fragment"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
