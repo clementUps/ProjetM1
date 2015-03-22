@@ -1,17 +1,37 @@
 package com.projet.M1.main;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import servernode.example.com.projetm1.*;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity
+        implements HeadlinesFragment.OnHeadlineSelectedListener,
+        fragment_ecran_titre.OnFragmentInteractionListener,
+        nouveauModule.OnFragmentInteractionListener,
+        menu.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (findViewById(R.id.fragment_container) != null) {
+
+            if (savedInstanceState != null) return;
+
+            Fragment firstFragment = new nouveauModule();
+
+            firstFragment.setArguments(getIntent().getExtras());
+
+            getFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, firstFragment).commit();
+        }
     }
 
 
@@ -35,5 +55,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onArticleSelected(int position) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

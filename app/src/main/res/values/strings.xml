@@ -15,5 +15,7 @@
     <string name="plus">+</string>
     <string name="newEvent">Nouvel évènement</string>
     <string name="newAction">Nouvelle action</string>
+    <string name="boutonMenu"><![CDATA[< Menu]]></string>
+    <string name="neocampus">neoCampus</string>
 
 </resources>
