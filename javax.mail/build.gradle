@@ -1,0 +1,6 @@
+configurations.create("mail")
+artifacts.add("mail", file('javax.mail.jar'))
+dependencies {
+    apply plugin: 'java'
+    runtime project(':app')
+}

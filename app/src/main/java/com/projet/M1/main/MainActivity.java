@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.projet.M1.action.GestionMail;
-import com.projet.M1.evenement.Capteur;
 import com.projet.M1.evenement.Luminosite;
 
 
@@ -27,7 +26,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final Actionneur monActionneur = new Actionneur();
-        final Luminosite lumiere = new Luminosite("Luminosite", false, 30);
+        final Luminosite lumiere = new Luminosite("Luminosite", false, 10);
         GestionMail envoieMail = new GestionMail();
         lumiere.ajouterAction(envoieMail);
         monActionneur.ajouterCapteur(lumiere);

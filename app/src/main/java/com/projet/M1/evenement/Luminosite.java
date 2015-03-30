@@ -13,7 +13,7 @@ public class Luminosite extends Capteur {
     public Luminosite(String nom, Boolean opposite, int luxCond){
         super(nom, opposite);
         nbLuxCond = luxCond;
-        lux = 0;
+        lux = 1000;
     }
 
     public float getNbLuxCond() {
