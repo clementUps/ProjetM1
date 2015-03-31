@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.projet.M1.CommunityFragment;
+import com.projet.M1.Enregistrement;
 import com.projet.M1.FindPeopleFragment;
 import com.projet.M1.HomeFragment;
 import com.projet.M1.Json.JsonLoggin;
@@ -179,7 +180,7 @@ public class MainActivity extends ActionBarActivity {
         } else {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, new LogginFragment()).commit();
+                    .replace(R.id.frame_container, new Enregistrement()).commit();
 
         }
     }
