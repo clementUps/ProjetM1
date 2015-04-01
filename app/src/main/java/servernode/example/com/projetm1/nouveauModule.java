@@ -1,6 +1,7 @@
 package servernode.example.com.projetm1;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;

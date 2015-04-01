@@ -33,7 +33,7 @@ public class nouvelEvenement extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Arrays arrayString;
+    private String[] array = {"Objet1", "Objet2"};
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,19 +65,17 @@ public class nouvelEvenement extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            ArrayList<String> array= new ArrayList<String>();
-            array.add(mParam1);
-            array.add(mParam2);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
-                    R.layout.simple_list_item, array);
-            ListView listView = (ListView) this.getActivity().findViewById(R.id.listView);
-            listView.setAdapter(adapter);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // TODO: Faire un liste qui fonctionne.
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_list_item_1, array);
+        ListView listView = (ListView) this.getActivity().findViewById(R.id.listView);
+        listView.setAdapter(adapter);*/
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_nouvel_evenement, container, false);
     }

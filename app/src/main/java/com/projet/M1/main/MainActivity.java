@@ -3,12 +3,14 @@ package com.projet.M1.main;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
+import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -41,8 +43,15 @@ import com.projet.M1.adapter.NavDrawerListAdapter;
 import com.projet.M1.WhatsHotFragment;
 import com.projet.M1.model.NavDrawerItem;
 
+import servernode.example.com.projetm1.nouveauModule;
+import servernode.example.com.projetm1.nouvelEvenement;
+import servernode.example.com.projetm1.nouvelleAction;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity
+        implements nouveauModule.OnFragmentInteractionListener,
+        nouvelEvenement.OnFragmentInteractionListener,
+        nouvelleAction.OnFragmentInteractionListener {
 
   //  Button buttonLogin,buttonAction;
 
@@ -94,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Set<String> users = settings.getStringSet("userLoggin", null);
         if(users == null){
-            return false;
+            return true;
         }
         return true;
     }
@@ -184,6 +193,11 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * Slide menu item click listener
      * */
@@ -252,7 +266,7 @@ public class MainActivity extends ActionBarActivity {
                 fragment = new CommunityFragment();
                 break;
             case 4:
-                fragment = new PagesFragment();
+                fragment = new nouveauModule();
                 break;
             case 5:
                 new AlertDialog.Builder(this)
@@ -320,5 +334,25 @@ public class MainActivity extends ActionBarActivity {
         if(val == true) {
             mDrawerToggle.onConfigurationChanged(newConfig);
         }
+    }
+
+
+    public void nouvEvenement(View view) {
+        Fragment nouvFragment = new nouvelEvenement();
+
+        transaction(nouvFragment);
+    }
+
+    public void nouvAction(View view) {
+        Fragment nouvFragment = new nouvelleAction();
+
+        transaction(nouvFragment);
+    }
+
+    public void transaction(Fragment fragment){
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
