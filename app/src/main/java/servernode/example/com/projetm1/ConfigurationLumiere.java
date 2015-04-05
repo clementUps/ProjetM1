@@ -7,19 +7,20 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.projet.M1.main.R;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link nouveauModule.OnFragmentInteractionListener} interface
+ * {@link ConfigurationLumiere.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link nouveauModule#newInstance} factory method to
+ * Use the {@link ConfigurationLumiere#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class nouveauModule extends Fragment {
+public class ConfigurationLumiere extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,17 +32,20 @@ public class nouveauModule extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private SeekBar mySeekBar;
+    private TextView myTextView;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment nouveauModule.
+     * @return A new instance of fragment ConfigurationLumiere.
      */
     // TODO: Rename and change types and number of parameters
-    public static nouveauModule newInstance(String param1, String param2) {
-        nouveauModule fragment = new nouveauModule();
+    public static ConfigurationLumiere newInstance(String param1, String param2) {
+        ConfigurationLumiere fragment = new ConfigurationLumiere();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,7 +53,7 @@ public class nouveauModule extends Fragment {
         return fragment;
     }
 
-    public nouveauModule() {
+    public ConfigurationLumiere() {
         // Required empty public constructor
     }
 
@@ -60,13 +64,32 @@ public class nouveauModule extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nouveau_module, container, false);
+        View view = inflater.inflate(R.layout.fragment_configuration_lumiere, container, false);
+        mySeekBar = (SeekBar) view.findViewById(R.id.seekBar);
+        myTextView = (TextView) view.findViewById (R.id.textView12);
+        mySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                myTextView.setText(""+progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

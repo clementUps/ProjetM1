@@ -5,13 +5,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
 import android.net.Uri;
-import android.provider.Settings;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -20,29 +18,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.projet.M1.CommunityFragment;
+import servernode.example.com.projetm1.ConfigurationLumiere;
 import com.projet.M1.FindPeopleFragment;
 import com.projet.M1.HomeFragment;
-import com.projet.M1.Json.JsonLoggin;
-import com.projet.M1.Json.SendAction;
 import com.projet.M1.LogginFragment;
-import com.projet.M1.PagesFragment;
 import com.projet.M1.PhotosFragment;
-import com.projet.M1.Utilisateur.User;
 
 import java.util.ArrayList;
 import java.util.Set;
 
 import com.projet.M1.adapter.NavDrawerListAdapter;
 
-import com.projet.M1.WhatsHotFragment;
 import com.projet.M1.model.NavDrawerItem;
 
+import servernode.example.com.projetm1.ConfigurationMail;
 import servernode.example.com.projetm1.nouveauModule;
 import servernode.example.com.projetm1.nouvelEvenement;
 import servernode.example.com.projetm1.nouvelleAction;
@@ -50,8 +43,10 @@ import servernode.example.com.projetm1.nouvelleAction;
 
 public class MainActivity extends ActionBarActivity
         implements nouveauModule.OnFragmentInteractionListener,
-        nouvelEvenement.OnFragmentInteractionListener,
-        nouvelleAction.OnFragmentInteractionListener {
+        nouvelleAction.OnFragmentInteractionListener,
+        nouvelEvenement.OnSelectedEventListener,
+        ConfigurationLumiere.OnFragmentInteractionListener,
+        ConfigurationMail.OnFragmentInteractionListener{
 
   //  Button buttonLogin,buttonAction;
 
@@ -197,6 +192,49 @@ public class MainActivity extends ActionBarActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    @Override
+    public void onFragmentInteraction(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new ConfigurationLumiere();
+                break;
+
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            transaction(fragment);
+
+        } else {
+            // error in creating fragment
+            Log.e("MainActivity", "Error in creating fragment");
+        }
+    }
+
+    @Override
+    public void onNouvelleActionInteraction(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new ConfigurationMail();
+                break;
+
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            transaction(fragment);
+
+        } else {
+            // error in creating fragment
+            Log.e("MainActivity", "Error in creating fragment");
+        }
+    }
+
 
     /**
      * Slide menu item click listener
