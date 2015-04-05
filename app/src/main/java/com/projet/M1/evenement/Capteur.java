@@ -14,9 +14,10 @@ public abstract class Capteur {
     Conditions conditions; //selon cette condition on ira voir l'autre capteur
     private Capteur capteur; //permet de gérer récurisevement les capteurs avec une infinité de conditions.
 
-    public Capteur(String nom, boolean opposite) {
+    public Capteur(String nom, boolean opposite, Conditions conditions) {
         this.nom = nom;
         this.opposite = opposite;
+        this.conditions = conditions;
         this.actionAssoc = new ArrayList<Action>();
     }
 
@@ -57,6 +58,10 @@ public abstract class Capteur {
 
     public Capteur getCapteur() {
         return capteur;
+    }
+
+    public void setActionAssoc(ArrayList<Action> actionAssoc) {
+        this.actionAssoc = actionAssoc;
     }
 
     public void setCapteur(Capteur capteur) {
