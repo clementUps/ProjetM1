@@ -30,4 +30,9 @@ public class GestionMail extends Action {
         }
         envoye = true;
     }
+
+    @Override
+    public void run() {
+        envoye = false;
+    }
 }

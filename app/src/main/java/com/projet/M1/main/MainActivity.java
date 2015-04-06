@@ -21,6 +21,7 @@ import com.projet.M1.evenement.Capteur;
 import com.projet.M1.evenement.Localisation;
 import com.projet.M1.evenement.Luminosite;
 
+import java.util.Timer;
 
 
 public class MainActivity extends Activity {
@@ -40,7 +41,9 @@ public class MainActivity extends Activity {
 
     /* CREATION DES CAPTEURS */
     final Luminosite lumiere = new Luminosite("Luminosite", false, Conditions.IF_THEN, 10);
-    final Localisation localisation = new Localisation("Localisation", false, Conditions.IF_THEN, 43.55529517, 1.46452743, 0.000001);//8079, 45328);
+    final Localisation localisation = new Localisation("Localisation", false, Conditions.IF_THEN, 43.561838, 1.468124, 0.000005);
+
+    Timer timerMail = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,10 @@ public class MainActivity extends Activity {
         lumiere.ajouterAction(envoieMailLumi);
         final GestionMail envoieMailLoca = new GestionMail(2);
         localisation.ajouterAction(envoieMailLoca);
+
+        /* TIMER POUR REINITIALISER L'ENVOI DE MAIL -> 30sec */
+        timerMail.scheduleAtFixedRate(envoieMailLoca, 0, 30000);
+        timerMail.scheduleAtFixedRate(envoieMailLumi, 0, 30000);
 
         /* AJOUT DES CAPTEURS A l'ACTIONNEUR */
         monActionneur.ajouterCapteur(lumiere);
@@ -92,10 +99,10 @@ public class MainActivity extends Activity {
             @Override
             public void onLocationChanged(Location location) {
                 if (location != null) {
-                    Log.i("Géolocalisation", "Latitude: " + location.getLatitude() +
+                   /* Log.i("Géolocalisation", "Latitude: " + location.getLatitude() +
                             " Longitude : " + location.getLongitude() +
                             " Altitude : " + location.getAltitude() +
-                            " Précision : " + location.getAccuracy());
+                            " Précision : " + location.getAccuracy());*/
                     texteLocalisation.setText("Latitude: " + location.getLatitude() +
                             " Longitude : " + location.getLongitude() +
                             " Altitude : " + location.getAltitude() +
