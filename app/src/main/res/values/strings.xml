@@ -25,4 +25,15 @@
     </array>
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+    <string name="hello_blank_fragment">Hello World !</string>
+    <string name="titreApp">IFTT_IRIT</string>
+    <string name="neocampus">NeoCampus</string>
+    <string name="creerModule">Créer un module</string>
+    <string name="listeModules">Liste des Modules</string>
+    <string name="historiqueModules">Historique des Modules exécutés</string>
+    <string name="credits">Crédits</string>
+    <string name="nouveauModule">Nouveau Module</string>
+    <string name="plus">+</string>
+    <string name="newEvent">Nouvel Evènement</string>
+    <string name="newAction">Nouvelle Action</string>
 </resources>

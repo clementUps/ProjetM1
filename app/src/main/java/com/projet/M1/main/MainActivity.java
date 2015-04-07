@@ -25,6 +25,7 @@ import android.widget.ListView;
 
 import com.projet.M1.CommunityFragment;
 import com.projet.M1.Enregistrement;
+import servernode.example.com.projetm1.ConfigurationLumiere;
 import com.projet.M1.FindPeopleFragment;
 import com.projet.M1.HomeFragment;
 import com.projet.M1.Json.JsonLoggin;
@@ -42,8 +43,18 @@ import com.projet.M1.adapter.NavDrawerListAdapter;
 import com.projet.M1.WhatsHotFragment;
 import com.projet.M1.model.NavDrawerItem;
 
+import servernode.example.com.projetm1.ConfigurationMail;
+import servernode.example.com.projetm1.nouveauModule;
+import servernode.example.com.projetm1.nouvelEvenement;
+import servernode.example.com.projetm1.nouvelleAction;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity
+        implements nouveauModule.OnFragmentInteractionListener,
+        nouvelleAction.OnFragmentInteractionListener,
+        nouvelEvenement.OnSelectedEventListener,
+        ConfigurationLumiere.OnFragmentInteractionListener,
+        ConfigurationMail.OnFragmentInteractionListener{
 
   //  Button buttonLogin,buttonAction;
 
@@ -180,10 +191,58 @@ public class MainActivity extends ActionBarActivity {
         } else {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, new Enregistrement()).commit();
+                    .replace(R.id.frame_container, new LogginFragment()).commit();
 
         }
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new ConfigurationLumiere();
+                break;
+
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            transaction(fragment);
+
+        } else {
+            // error in creating fragment
+            Log.e("MainActivity", "Error in creating fragment");
+        }
+    }
+
+    @Override
+    public void onNouvelleActionInteraction(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new ConfigurationMail();
+                break;
+
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            transaction(fragment);
+
+        } else {
+            // error in creating fragment
+            Log.e("MainActivity", "Error in creating fragment");
+        }
+    }
+
 
     /**
      * Slide menu item click listener
@@ -321,5 +380,25 @@ public class MainActivity extends ActionBarActivity {
         if(val == true) {
             mDrawerToggle.onConfigurationChanged(newConfig);
         }
+    }
+
+
+    public void nouvEvenement(View view) {
+        Fragment nouvFragment = new nouvelEvenement();
+
+        transaction(nouvFragment);
+    }
+
+    public void nouvAction(View view) {
+        Fragment nouvFragment = new nouvelleAction();
+
+        transaction(nouvFragment);
+    }
+
+    public void transaction(Fragment fragment){
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
