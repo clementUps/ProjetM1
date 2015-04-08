@@ -21,7 +21,6 @@ android {
 }
 
 dependencies {
-    compile files('librairie/activation.jar')
-    compile files('librairie/mail.jar')
-    compile files('librairie/additionnal.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:21.0.3'
 }

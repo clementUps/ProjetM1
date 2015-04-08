@@ -3,13 +3,13 @@ package com.projet.M1.main;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
-import android.provider.Settings;
+import android.net.Uri;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -18,42 +18,35 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.projet.M1.CommunityFragment;
-import com.projet.M1.Enregistrement;
-import servernode.example.com.projetm1.ConfigurationLumiere;
+
+import servernode.example.com.projetm1.ConfigurationEvenementCapteur;
+
 import com.projet.M1.FindPeopleFragment;
 import com.projet.M1.HomeFragment;
-import com.projet.M1.Json.JsonLoggin;
-import com.projet.M1.Json.SendAction;
 import com.projet.M1.LogginFragment;
-import com.projet.M1.PagesFragment;
 import com.projet.M1.PhotosFragment;
-import com.projet.M1.Utilisateur.User;
 
 import java.util.ArrayList;
 import java.util.Set;
 
 import com.projet.M1.adapter.NavDrawerListAdapter;
 
-import com.projet.M1.WhatsHotFragment;
 import com.projet.M1.model.NavDrawerItem;
 
 import servernode.example.com.projetm1.ConfigurationMail;
-import servernode.example.com.projetm1.nouveauModule;
-import servernode.example.com.projetm1.nouvelEvenement;
-import servernode.example.com.projetm1.nouvelleAction;
+import servernode.example.com.projetm1.NouveauModule;
+import servernode.example.com.projetm1.NouvelleEvenement;
+import servernode.example.com.projetm1.NouvelleAction;
 
 
 public class MainActivity extends ActionBarActivity
-        implements nouveauModule.OnFragmentInteractionListener,
-        nouvelleAction.OnFragmentInteractionListener,
-        nouvelEvenement.OnSelectedEventListener,
-        ConfigurationLumiere.OnFragmentInteractionListener,
+        implements NouvelleAction.OnFragmentInteractionListener,
+        NouvelleEvenement.OnSelectedEventListener,
+        ConfigurationEvenementCapteur.OnFragmentInteractionListener,
         ConfigurationMail.OnFragmentInteractionListener{
 
   //  Button buttonLogin,buttonAction;
@@ -84,7 +77,7 @@ public class MainActivity extends ActionBarActivity
                 }
             };
 */
-  private DrawerLayout mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -206,7 +199,7 @@ public class MainActivity extends ActionBarActivity
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new ConfigurationLumiere();
+                fragment = new ConfigurationEvenementCapteur();
                 break;
 
             default:
@@ -241,8 +234,8 @@ public class MainActivity extends ActionBarActivity
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
-    }
 
+    }
 
     /**
      * Slide menu item click listener
@@ -312,7 +305,7 @@ public class MainActivity extends ActionBarActivity
                 fragment = new CommunityFragment();
                 break;
             case 4:
-                fragment = new PagesFragment();
+                fragment = new NouveauModule();
                 break;
             case 5:
                 new AlertDialog.Builder(this)
@@ -382,18 +375,6 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-
-    public void nouvEvenement(View view) {
-        Fragment nouvFragment = new nouvelEvenement();
-
-        transaction(nouvFragment);
-    }
-
-    public void nouvAction(View view) {
-        Fragment nouvFragment = new nouvelleAction();
-
-        transaction(nouvFragment);
-    }
 
     public void transaction(Fragment fragment){
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

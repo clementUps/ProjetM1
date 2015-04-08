@@ -14,12 +14,12 @@ import com.projet.M1.main.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fragment_ecran_titre.OnFragmentInteractionListener} interface
+ * {@link FragmentEcranTitre.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fragment_ecran_titre#newInstance} factory method to
+ * Use the {@link FragmentEcranTitre#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_ecran_titre extends Fragment {
+public class FragmentEcranTitre extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,8 +40,8 @@ public class fragment_ecran_titre extends Fragment {
      * @return A new instance of fragment fragment_ecran_titre.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_ecran_titre newInstance(String param1, String param2) {
-        fragment_ecran_titre fragment = new fragment_ecran_titre();
+    public static FragmentEcranTitre newInstance(String param1, String param2) {
+        FragmentEcranTitre fragment = new FragmentEcranTitre();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,7 +49,7 @@ public class fragment_ecran_titre extends Fragment {
         return fragment;
     }
 
-    public fragment_ecran_titre() {
+    public FragmentEcranTitre() {
         // Required empty public constructor
     }
 

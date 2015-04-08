@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="servernode.example.com.projetm1.ConfigurationEvenementCapteur">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Configuration Lumière"
+        android:id="@+id/configText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Luminosité"
+        android:id="@+id/intituleText"
+        android:layout_below="@+id/configText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"
+        android:id="@+id/validerButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/defilementBar"
+        android:layout_above="@+id/validerButton"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/numberSeekText"
+        android:max="1000"
+        android:progress="0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0"
+        android:id="@+id/numberSeekText"
+        android:layout_above="@+id/validerButton"
+        android:layout_toStartOf="@+id/unite" />
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/intituleText"
+        android:layout_alignParentStart="true"
+        android:id="@+id/radioGroupAction"
+        android:layout_above="@+id/defilementBar">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="allumer"
+            android:id="@+id/allumerRadioButton"
+            android:layout_gravity="center_horizontal"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="éteindre"
+            android:id="@+id/eteindreRadioButton"
+            android:layout_gravity="center_horizontal"
+            android:checked="false" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="modifier"
+            android:id="@+id/modifierRadioButton"
+            android:layout_gravity="center_horizontal"
+            android:checked="false" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="lux"
+        android:id="@+id/unite"
+        android:layout_alignTop="@+id/numberSeekText"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

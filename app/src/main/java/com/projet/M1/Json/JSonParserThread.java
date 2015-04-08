@@ -21,7 +21,7 @@ import java.net.URI;
  */
 public class JSonParserThread{// extends Thread {//implements Runnable{
 
-    private final String ip = "192.168.1.17";//"192.168.1.25";
+    private final String ip = "192.168.1.25";
     private final int port = 8081;
     private String adresse;
 
