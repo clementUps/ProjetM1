@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valider"
-        android:id="@+id/validerButton"
+        android:id="@+id/validerButtonAction"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

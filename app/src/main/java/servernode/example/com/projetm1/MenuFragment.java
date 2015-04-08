@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.projet.M1.main.R;
 
-import servernode.example.com.projetm1.listes.ListeEvenements;
 
 /**
  * A fragment representing a list of Items.
@@ -77,8 +76,8 @@ public class MenuFragment extends Fragment implements AbsListView.OnItemClickLis
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<ListeEvenements.Evenement>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, ListeEvenements.ITEMS);
+        /*mAdapter = new ArrayAdapter<ListeEvenements.Evenement>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, ListeEvenements.ITEMS);*/
     }
 
     @Override
@@ -119,7 +118,7 @@ public class MenuFragment extends Fragment implements AbsListView.OnItemClickLis
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(ListeEvenements.ITEMS.get(position).id);
+            //mListener.onFragmentInteraction(ListeEvenements.ITEMS.get(position).id);
         }
     }
 

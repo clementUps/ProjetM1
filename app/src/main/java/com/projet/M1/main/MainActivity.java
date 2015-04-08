@@ -23,6 +23,7 @@ import android.widget.ListView;
 
 import com.projet.M1.CommunityFragment;
 
+import servernode.example.com.projetm1.Communicator;
 import servernode.example.com.projetm1.ConfigurationEvenementCapteur;
 
 import com.projet.M1.FindPeopleFragment;
@@ -33,50 +34,51 @@ import com.projet.M1.PhotosFragment;
 import java.util.ArrayList;
 import java.util.Set;
 
+import com.projet.M1.action.Action;
 import com.projet.M1.adapter.NavDrawerListAdapter;
 
+import com.projet.M1.evenement.Capteur;
 import com.projet.M1.model.NavDrawerItem;
 
 import servernode.example.com.projetm1.ConfigurationMail;
 import servernode.example.com.projetm1.CreationModule;
-import servernode.example.com.projetm1.nouvelleEvenement;
-import servernode.example.com.projetm1.nouvelleAction;
+import servernode.example.com.projetm1.CreationNouvelleAction;
+import servernode.example.com.projetm1.CreationNouvelleEvenement;
 
 
 public class MainActivity extends ActionBarActivity
-        implements nouvelleAction.OnFragmentInteractionListener,
-        nouvelleEvenement.OnSelectedEventListener,
-        ConfigurationEvenementCapteur.OnFragmentInteractionListener,
-        ConfigurationMail.OnFragmentInteractionListener{
+        implements Communicator{
 
   //  Button buttonLogin,buttonAction;
 
-  /*  OnClickListener buttonActionListener =
-            new OnClickListener() {
+    /*  OnClickListener buttonActionListener =
+                new OnClickListener() {
 
-                @Override
-                public void onClick(View arg0) {
-                    SendAction send = new SendAction("event1","action1");
-                    try {
-                        send.start();
-                    } catch(Exception exception){
-                        exception.printStackTrace();
+                    @Override
+                    public void onClick(View arg0) {
+                        SendAction send = new SendAction("event1","action1");
+                        try {
+                            send.start();
+                        } catch(Exception exception){
+                            exception.printStackTrace();
+                        }
                     }
-                }
-        };
-
-    OnClickListener buttonLoginListener =
-            new OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    JsonLoggin json = new JsonLoggin("aze","azerty123456");
-                    json.runJson();
-                    User user = json.getUser();
-                    Log.e("data json loggin "," "+user.getIds());
-                }
             };
-*/
+
+        OnClickListener buttonLoginListener =
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View arg0) {
+                        JsonLoggin json = new JsonLoggin("aze","azerty123456");
+                        json.runJson();
+                        User user = json.getUser();
+                        Log.e("data json loggin "," "+user.getIds());
+                    }
+                };
+    */
+    private Capteur capteur;
+    private Action action;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -95,6 +97,21 @@ public class MainActivity extends ActionBarActivity
     private NavDrawerListAdapter adapter;
     boolean val = false;
     public static final String PREFS_NAME = "MyPrefsFile";
+
+
+    public void setCapteur(Capteur capteur) {
+        this.capteur = capteur;
+    }
+    @Override
+    public Action getAction() {
+        return action;
+    }
+
+    @Override
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
     public boolean checkLoggin(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Set<String> users = settings.getStringSet("userLoggin", null);
@@ -190,51 +207,8 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    @Override
-    public void onFragmentInteraction(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new ConfigurationEvenementCapteur();
-                break;
-
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            transaction(fragment);
-
-        } else {
-            // error in creating fragment
-            Log.e("MainActivity", "Error in creating fragment");
-        }
-    }
-
-    @Override
-    public void onNouvelleActionInteraction(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new ConfigurationMail();
-                break;
-
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            transaction(fragment);
-
-        } else {
-            // error in creating fragment
-            Log.e("MainActivity", "Error in creating fragment");
-        }
-
+    public Capteur getCapteur() {
+        return capteur;
     }
 
     /**

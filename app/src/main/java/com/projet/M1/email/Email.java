@@ -14,7 +14,7 @@ public class Email extends AsyncTask<Void, Void, Void> {
             GMailSender sender = new GMailSender("theateamgeo@gmail.com", "theateam1234");
             //définie les différentes partie du mail
             sender.sendMail("Lucas test mail Lumiere",
-                    "J'ai envoyé un mail car la lumière était trop basse",
+                    "J'ai envoyé un mail car la lumiere était trop basse",
                     "theateamgeo@gmail.com",
                     "theateamgeo@gmail.com");
         } catch (Exception e) {
