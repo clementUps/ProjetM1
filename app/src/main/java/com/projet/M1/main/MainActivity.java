@@ -38,7 +38,7 @@ import com.projet.M1.adapter.NavDrawerListAdapter;
 import com.projet.M1.model.NavDrawerItem;
 
 import servernode.example.com.projetm1.ConfigurationMail;
-import servernode.example.com.projetm1.nouveauModule;
+import servernode.example.com.projetm1.CreationModule;
 import servernode.example.com.projetm1.nouvelleEvenement;
 import servernode.example.com.projetm1.nouvelleAction;
 
@@ -305,7 +305,7 @@ public class MainActivity extends ActionBarActivity
                 fragment = new CommunityFragment();
                 break;
             case 4:
-                fragment = new nouveauModule();
+                fragment = new CreationModule();
                 break;
             case 5:
                 new AlertDialog.Builder(this)

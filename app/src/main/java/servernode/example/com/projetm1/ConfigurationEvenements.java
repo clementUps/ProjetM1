@@ -1,8 +1,8 @@
 package servernode.example.com.projetm1;
 
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +11,14 @@ import com.projet.M1.main.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link configurationEvenement.OnFragmentInteractionListener} interface
+ * {@link servernode.example.com.projetm1.ConfigurationEvenements.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link configurationEvenement} factory method to
+ * Use the {@link servernode.example.com.projetm1.ConfigurationEvenements} factory method to
  * create an instance of this fragment.
  */
-public class configurationEvenement extends Fragment {
+public class ConfigurationEvenements extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
 
     // TODO: Rename and change types of parameters
@@ -26,7 +26,7 @@ public class configurationEvenement extends Fragment {
     private OnFragmentInteractionListener mListener;
 
 
-    public configurationEvenement() {
+    public ConfigurationEvenements() {
         // Required empty public constructor
     }
 

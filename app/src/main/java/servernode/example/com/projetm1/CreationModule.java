@@ -15,15 +15,15 @@ import com.projet.M1.main.R;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link nouveauModule#} factory method to
+ * Use the {@link #} factory method to
  * create an instance of this fragment.
  */
-public class nouveauModule extends Fragment {
+public class CreationModule extends Fragment {
 
 
     Button evenement;
     Button action;
-    public nouveauModule() {
+    public CreationModule() {
         // Required empty public constructor
     }
 
@@ -50,11 +50,11 @@ public class nouveauModule extends Fragment {
     public void action(){
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, new nouvelleAction()).commit();
+                .replace(R.id.frame_container, new CreationNouvelleAction()).commit();
     }
     public void evenement(){
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, new nouvelleEvenement()).commit();
+                .replace(R.id.frame_container, new CreationNouvelleEvenement()).commit();
     }
 }
