@@ -8,6 +8,10 @@ import java.util.TimerTask;
 public abstract class Action extends TimerTask{
     private String nom;
 
+    public String getNom() {
+        return nom;
+    }
+
     public  abstract void actionner();
 
 

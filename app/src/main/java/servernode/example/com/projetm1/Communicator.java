@@ -1,5 +1,6 @@
 package servernode.example.com.projetm1;
 
+import com.projet.M1.Module.Module;
 import com.projet.M1.action.Action;
 import com.projet.M1.evenement.Capteur;
 
@@ -12,5 +13,6 @@ public interface Communicator {
     public void setCapteur(Capteur capteur);
     public Action getAction();
     public void setAction(Action capteur);
+    public void addModule(Module module);
 
 }

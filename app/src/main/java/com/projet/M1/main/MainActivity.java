@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
@@ -21,6 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.projet.M1.CommunityFragment;
 
 import servernode.example.com.projetm1.Communicator;
@@ -29,9 +32,12 @@ import servernode.example.com.projetm1.ConfigurationEvenementCapteur;
 import com.projet.M1.FindPeopleFragment;
 import com.projet.M1.HomeFragment;
 import com.projet.M1.LogginFragment;
+import com.projet.M1.Module.Module;
 import com.projet.M1.PhotosFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import com.projet.M1.action.Action;
@@ -39,6 +45,8 @@ import com.projet.M1.adapter.NavDrawerListAdapter;
 
 import com.projet.M1.evenement.Capteur;
 import com.projet.M1.model.NavDrawerItem;
+
+import org.json.JSONObject;
 
 import servernode.example.com.projetm1.ConfigurationMail;
 import servernode.example.com.projetm1.CreationModule;
@@ -82,6 +90,7 @@ public class MainActivity extends ActionBarActivity
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+    private List<Module> listeModule = new ArrayList<Module>();
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -97,7 +106,7 @@ public class MainActivity extends ActionBarActivity
     private NavDrawerListAdapter adapter;
     boolean val = false;
     public static final String PREFS_NAME = "MyPrefsFile";
-
+    public static final String MODULE_STORAGE = "modeStore";
 
     public void setCapteur(Capteur capteur) {
         this.capteur = capteur;
@@ -115,6 +124,7 @@ public class MainActivity extends ActionBarActivity
     public boolean checkLoggin(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Set<String> users = settings.getStringSet("userLoggin", null);
+
         if(users == null){
             return false;
         }
@@ -127,6 +137,38 @@ public class MainActivity extends ActionBarActivity
         editor.commit();
     }
 
+    public void storeModule(){
+        SharedPreferences settings;
+        Editor editor;
+        settings = getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        editor = settings.edit();
+        JSONObject json = new JSONObject();
+        try {
+            json.put("listeModule", listeModule);
+            editor.putString(MODULE_STORAGE, json.toString());
+            editor.commit();
+            Log.e("module ",json.toString());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void loadModule(){
+        SharedPreferences settings;
+        settings = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        JSONObject json = new JSONObject();
+        if (settings.contains(MODULE_STORAGE)) {
+
+            String jsonString = settings.getString(MODULE_STORAGE, null);
+            try {
+                json = json.getJSONObject(jsonString);
+                listeModule = (List<Module>)json.get("listeModule");
+                Log.e("module ",listeModule.get(0).getAction().getNom());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,7 +235,9 @@ public class MainActivity extends ActionBarActivity
                 }
             };
             mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+            if(listeModule == null){
+                loadModule();
+            }
             if (savedInstanceState == null) {
                 // on first time display view for first nav item
                 displayView(0);
@@ -355,5 +399,14 @@ public class MainActivity extends ActionBarActivity
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void addModule(Module module){
+        loadModule();
+        if(listeModule == null){
+            listeModule = new ArrayList<Module>();
+        }
+        listeModule.add(module);
+        storeModule();
     }
 }

@@ -9,18 +9,22 @@ import java.util.ArrayList;
  */
 public abstract class Capteur {
     private String nom;
+    private final int sensorType;
     private boolean opposite; //sert à savoir si la condition est un NOT
     private ArrayList<Action> actionAssoc;
     Conditions conditions; //selon cette condition on ira voir l'autre capteur
     private Capteur capteur; //permet de gérer récurisevement les capteurs avec une infinité de conditions.
 
-    public Capteur(String nom, boolean opposite, Conditions conditions) {
+    public Capteur(String nom, boolean opposite, Conditions conditions,int sensorType) {
+        this.sensorType = sensorType;
         this.nom = nom;
         this.opposite = opposite;
         this.conditions = conditions;
         this.actionAssoc = new ArrayList<Action>();
     }
-
+    public int getSensorType(){
+        return sensorType;
+    }
     public String getNom() {
         return nom;
     }

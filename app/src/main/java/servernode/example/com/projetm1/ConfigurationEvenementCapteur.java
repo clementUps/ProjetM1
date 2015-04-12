@@ -1,6 +1,7 @@
 package servernode.example.com.projetm1;
 
 import android.app.FragmentManager;
+import android.hardware.Sensor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
