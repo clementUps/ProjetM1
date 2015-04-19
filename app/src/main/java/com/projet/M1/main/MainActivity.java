@@ -126,7 +126,7 @@ public class MainActivity extends ActionBarActivity
         Set<String> users = settings.getStringSet("userLoggin", null);
 
         if(users == null){
-            return false;
+            return true;
         }
         return true;
     }

@@ -63,7 +63,9 @@ public class CreationNouvelleEvenement extends Fragment{
                 fragment = new ConfigurationEvenementCapteur();
                 ((ConfigurationEvenementCapteur)fragment).setPosition(position);
                 break;
-
+            case 4:
+                fragment = new Geolocalisation();
+                break;
             default:
                 break;
         }
