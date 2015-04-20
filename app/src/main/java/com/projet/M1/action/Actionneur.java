@@ -1,5 +1,6 @@
 package com.projet.M1.action;
 
+import com.projet.M1.Json.SendAction;
 import com.projet.M1.action.Action;
 import com.projet.M1.action.GestionMail;
 import com.projet.M1.evenement.Capteur;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class Actionneur {
 
     private ArrayList<Capteur> gestionCapteur;
+
+
 
     public Actionneur(){
         this.gestionCapteur = new ArrayList<Capteur>();
@@ -60,6 +63,8 @@ public class Actionneur {
                     if (act instanceof GestionMail)
                         if(((Luminosite) c).getNbLuxCond() >= ((Luminosite) c).getLux() ) {
                             act.actionner();
+                            SendAction json = new SendAction("luminosite", "mail");
+                            json.run();
                         }
                 }
             }
@@ -78,6 +83,8 @@ public class Actionneur {
                             ((Localisation) c).getLongitude() - ((Localisation) c).getPrecision() >=
                                     ((Localisation) c).getLongitudeCond()) {
                                 act.actionner();
+                                SendAction json = new SendAction("geolocalisation", "mail");
+                                json.run();
                             }
                         }
                 }
