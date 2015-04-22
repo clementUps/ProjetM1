@@ -20,7 +20,7 @@ import java.net.URI;
  */
 public class SendAction extends Thread{//implements Runnable{
 
-    private final String ip ="192.168.1.19";
+    private final String ip ="192.168.1.10";
     private final int port = 8081;
     private final String adresse = "/jsonListener/jsonParser/addJSon";
 

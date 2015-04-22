@@ -327,16 +327,16 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 5:
                 new AlertDialog.Builder(this)
-                        .setTitle("Déconnection")
-                        .setMessage("Etes vous sur de vouloir vous déconnecter?")
-                        .setPositiveButton("déconnection", new DialogInterface.OnClickListener() {
+                        .setTitle("Déconnexion")
+                        .setMessage("Etes vous sûr de vouloir vous déconnecter?")
+                        .setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 loggout();
                                 finish();
                                 startActivity(getIntent());
                             }
                         })
-                        .setNegativeButton("annuler", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // do nothing
                             }

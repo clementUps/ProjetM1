@@ -5,11 +5,14 @@ import android.hardware.Sensor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -27,6 +30,7 @@ public class ConfigurationEvenementCapteur extends Fragment {
     private TextView unite;
     private int position;
     private Button validerButton;
+    private RadioGroup infSup;
 
 
 
@@ -43,6 +47,7 @@ public class ConfigurationEvenementCapteur extends Fragment {
         intitule = (TextView) view.findViewById (R.id.intituleText);
         unite = (TextView) view.findViewById (R.id.unite);
         validerButton = (Button)view.findViewById(R.id.validerButton);
+        infSup = (RadioGroup)view.findViewById(R.id.infSup);
         switch(position){
             case 0:
                 unite.setText("lux");
@@ -89,7 +94,8 @@ public class ConfigurationEvenementCapteur extends Fragment {
     }
 
     public void initialisationEvenement(){
-        Luminosite lumiere  = new Luminosite("Luminosite", false, Conditions.IF_THEN, barreDefilement.getProgress());
+        Boolean isSup = infSup.getCheckedRadioButtonId() == R.id.superieurRadioButton; //true si le radioButton check et celui du supérieur, false sinon
+        Luminosite lumiere  = new Luminosite("Luminosite", false, Conditions.IF_THEN, barreDefilement.getProgress(), isSup);
         CreationModule fragment = new CreationModule();
         Communicator communication  = (Communicator)getActivity();
         communication.setCapteur(lumiere);

@@ -53,7 +53,8 @@
         android:layout_height="fill_parent"
         android:layout_below="@+id/intituleText"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/defilementBar">
+        android:layout_above="@+id/defilementBar"
+        android:id="@+id/infSup">
 
         <RadioButton
             android:layout_width="wrap_content"

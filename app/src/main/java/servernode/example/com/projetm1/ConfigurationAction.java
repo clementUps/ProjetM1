@@ -101,7 +101,7 @@ public class ConfigurationAction extends Fragment {
     }
 
     public void initialisationAction(){
-        GestionMail mail  = new GestionMail(1);
+        GestionMail mail  = new GestionMail("testSujet", "testBody", "theateamgeo@gmail.com");
         CreationModule fragment = new CreationModule();
         Communicator communication  = (Communicator)getActivity();
         communication.setAction(mail);

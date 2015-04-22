@@ -1,5 +1,7 @@
 package com.projet.M1.action;
 
+import android.util.Log;
+
 import com.projet.M1.Json.SendAction;
 import com.projet.M1.action.Action;
 import com.projet.M1.action.GestionMail;
@@ -15,7 +17,6 @@ import java.util.ArrayList;
 public class Actionneur {
 
     private ArrayList<Capteur> gestionCapteur;
-
 
 
     public Actionneur(){
@@ -61,10 +62,15 @@ public class Actionneur {
                 for (Action act : c.getActionAssoc())
                 {
                     if (act instanceof GestionMail)
-                        if(((Luminosite) c).getNbLuxCond() >= ((Luminosite) c).getLux() ) {
-                            act.actionner();
-                            SendAction json = new SendAction("luminosite", "mail");
-                            json.run();
+                        if (((Luminosite) c).isGreater()) {
+                            if (((Luminosite) c).getNbLuxCond() <= ((Luminosite) c).getLux()) {
+                                act.actionner();
+                            }
+
+                        } else {
+                            if (((Luminosite) c).getNbLuxCond() >= ((Luminosite) c).getLux()) {
+                                act.actionner();
+                            }
                         }
                 }
             }
@@ -83,8 +89,6 @@ public class Actionneur {
                             ((Localisation) c).getLongitude() - ((Localisation) c).getPrecision() >=
                                     ((Localisation) c).getLongitudeCond()) {
                                 act.actionner();
-                                SendAction json = new SendAction("geolocalisation", "mail");
-                                json.run();
                             }
                         }
                 }

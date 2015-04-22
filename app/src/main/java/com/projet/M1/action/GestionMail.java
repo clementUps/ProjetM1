@@ -2,17 +2,25 @@ package com.projet.M1.action;
 
 import android.util.Log;
 
+import com.projet.M1.Json.JSonParserThread;
+import com.projet.M1.Json.SendAction;
 import com.projet.M1.email.Email;
+
+import org.json.JSONObject;
 
 /**
  * Created by Lucas on 17/03/2015.
  */
 public class GestionMail extends Action {
     boolean envoye = false;
-    int numMail;
+    private String objet;
+    private String contenu;
+    private String destinataire;
 
-    public GestionMail(int num) {
-        this.numMail = num;
+    public GestionMail(String objet, String contenu, String destinataire) {
+        this.objet = objet;
+        this.contenu = contenu;
+        this.destinataire = destinataire;
     }
 
     public boolean isEnvoye() {
@@ -25,7 +33,9 @@ public class GestionMail extends Action {
         if (!envoye) {
             Log.i("Mail", "J'envoie un vrai mail");
             Email envoieMail = new Email();
-            envoieMail.setNumber(numMail);
+            envoieMail.setObjet(objet);
+            envoieMail.setContenu(contenu);
+            envoieMail.setDestinaire(destinataire);
             envoieMail.execute();
         }
         envoye = true;

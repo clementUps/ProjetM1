@@ -11,10 +11,16 @@ public class Luminosite extends Capteur {
 
     private float nbLuxCond; //lux pour appliquer la condition
     private float lux; //lux actuel du capteur
+    private boolean isGreater;
 
-    public Luminosite(String nom, Boolean opposite, Conditions conditions, int luxCond){
+    public Luminosite(String nom, Boolean opposite, Conditions conditions, int luxCond, Boolean isGreater){
         super(nom, opposite, conditions,Sensor.TYPE_LIGHT);
         nbLuxCond = luxCond;
+        this.isGreater = isGreater;
+    }
+
+    public boolean isGreater() {
+        return isGreater;
     }
 
     public float getNbLuxCond() {

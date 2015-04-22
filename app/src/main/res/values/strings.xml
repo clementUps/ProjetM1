@@ -25,18 +25,18 @@
     </array>
 
     <string-array name="action">
-        <item >lumière</item>
-        <item >chauffage</item>
-        <item >son</item>
-        <item >mail</item>
+        <item >Lumière</item>
+        <item >Chauffage</item>
+        <item >Son</item>
+        <item >Mail</item>
     </string-array>
 
     <string-array name="evenement">
-        <item >lumière</item>
-        <item >température</item>
+        <item >Lumière</item>
+        <item >Température</item>
         <item >Son</item>
-        <item >pression atmosphérique</item>
-        <item >géolocalisation</item>
+        <item >Pression atmosphérique</item>
+        <item >Géolocalisation</item>
     </string-array>
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
