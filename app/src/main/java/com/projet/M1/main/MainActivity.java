@@ -11,7 +11,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
-import android.net.Uri;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -23,20 +22,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
-import com.projet.M1.CommunityFragment;
-
 import servernode.example.com.projetm1.Communicator;
-import servernode.example.com.projetm1.ConfigurationEvenementCapteur;
 
-import com.projet.M1.FindPeopleFragment;
+import com.projet.M1.ContactFragment;
 import com.projet.M1.HomeFragment;
 import com.projet.M1.LogginFragment;
 import com.projet.M1.Module.Module;
-import com.projet.M1.PhotosFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -48,10 +41,7 @@ import com.projet.M1.model.NavDrawerItem;
 
 import org.json.JSONObject;
 
-import servernode.example.com.projetm1.ConfigurationMail;
 import servernode.example.com.projetm1.CreationModule;
-import servernode.example.com.projetm1.CreationNouvelleAction;
-import servernode.example.com.projetm1.CreationNouvelleEvenement;
 
 
 public class MainActivity extends ActionBarActivity
@@ -200,11 +190,7 @@ public class MainActivity extends ActionBarActivity
             // Photos
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
             // Communities, Will add a counter here
-            navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-            // Pages
-            navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-            // What's hot, We  will add a counter here
-            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], -1));
 
 
             // Recycle the typed array
@@ -317,18 +303,12 @@ public class MainActivity extends ActionBarActivity
                 fragment = new HomeFragment();
                 break;
             case 1:
-                fragment = new FindPeopleFragment();
+                fragment = new ContactFragment();
                 break;
             case 2:
-                fragment = new PhotosFragment();
-                break;
-            case 3:
-                fragment = new CommunityFragment();
-                break;
-            case 4:
                 fragment = new CreationModule();
                 break;
-            case 5:
+            case 3:
                 new AlertDialog.Builder(this)
                         .setTitle("Déconnexion")
                         .setMessage("Etes vous sûr de vouloir vous déconnecter?")

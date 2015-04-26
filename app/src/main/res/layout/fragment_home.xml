@@ -8,7 +8,7 @@
          android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16dp"
-        android:text="Home View"
+        android:text="Home"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <ImageView android:layout_width="wrap_content"
@@ -31,19 +31,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de modules présents : "
+        android:text="Ajouter un module "
         android:id="@+id/nbModulesText"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="25dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5"
-        android:id="@+id/nbModules"
-        android:layout_alignTop="@+id/nbModulesText"
-        android:layout_toEndOf="@+id/nbModulesText" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -51,8 +43,8 @@
         android:layout_height="wrap_content"
         android:text="@string/plus"
         android:id="@+id/addModuleButton"
-        android:layout_alignBottom="@+id/nbModules"
-        android:layout_toEndOf="@+id/nbModules"
+        android:layout_alignBottom="@+id/nbModulesText"
+        android:layout_toEndOf="@+id/nbModulesText"
         android:nestedScrollingEnabled="false"/>
 
 

@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 
 import com.projet.M1.main.R;
 
-public class PagesFragment extends Fragment {
+public class ContactFragment extends Fragment {
 	
-	public PagesFragment(){}
+	public ContactFragment(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_pages, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
          
         return rootView;
     }
