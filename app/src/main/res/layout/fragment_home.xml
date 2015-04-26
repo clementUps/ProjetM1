@@ -2,20 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <TextView
         android:id="@+id/txtLabel"
          android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:textSize="16dp"
-        android:text="Home View"/>
+        android:text="Home View"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
     <ImageView android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_below="@id/txtLabel"
                android:src="@drawable/ic_home"
                android:layout_centerHorizontal="true"
-               android:layout_marginTop="10dp"/>
-    
+               android:layout_marginTop="10dp"
+        android:id="@+id/imageView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom utilisateur"
+        android:id="@+id/nomUtilisateur"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de modules présents : "
+        android:id="@+id/nbModulesText"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:id="@+id/nbModules"
+        android:layout_alignTop="@+id/nbModulesText"
+        android:layout_toEndOf="@+id/nbModulesText" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plus"
+        android:id="@+id/addModuleButton"
+        android:layout_alignBottom="@+id/nbModules"
+        android:layout_toEndOf="@+id/nbModules"
+        android:nestedScrollingEnabled="false"/>
+
 
 </RelativeLayout>

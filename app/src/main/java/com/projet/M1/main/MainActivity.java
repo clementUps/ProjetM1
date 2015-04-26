@@ -92,6 +92,8 @@ public class MainActivity extends ActionBarActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private List<Module> listeModule = new ArrayList<Module>();
 
+    public static FragmentManager fragmentManager;
+
     // nav drawer title
     private CharSequence mDrawerTitle;
 
@@ -126,7 +128,7 @@ public class MainActivity extends ActionBarActivity
         Set<String> users = settings.getStringSet("userLoggin", null);
 
         if(users == null){
-            return false;
+            return true;
         }
         return true;
     }
@@ -172,6 +174,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.fragmentManager = getFragmentManager();
         setContentView(R.layout.activity_main);
         val = checkLoggin();
         if(val == true) {
