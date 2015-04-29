@@ -67,10 +67,10 @@ public class SingUpFragment extends Fragment {
                 Log.e("data json loggin ", " id " + user.getIds() + " email " + user.getNom());
                 if(user != null) {
                     Set<String> users = new HashSet<String>();
-                    users.add(user.getNom());
-                    users.add(user.getIds());
-                    users.add(user.getEmail());
-                    users.add(user.getPassword());
+                    users.add("nom:"+user.getNom());
+                    users.add("id:"+user.getIds());
+                    users.add("mail:"+user.getEmail());
+                    users.add("password:"+user.getPassword());
                     SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putStringSet("userLoggin", users);

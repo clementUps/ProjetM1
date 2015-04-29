@@ -80,6 +80,14 @@
             android:id="@+id/modifierRadioButton"
             android:layout_gravity="center_horizontal"
             android:checked="false" />
+
+        <Spinner
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+
     </RadioGroup>
 
     <TextView

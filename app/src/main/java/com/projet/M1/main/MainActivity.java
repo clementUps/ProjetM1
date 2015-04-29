@@ -116,7 +116,6 @@ public class MainActivity extends ActionBarActivity
     public boolean checkLoggin(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Set<String> users = settings.getStringSet("userLoggin", null);
-
         if(users == null){
             return false;
         }

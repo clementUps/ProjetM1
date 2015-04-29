@@ -2,6 +2,7 @@ package com.projet.M1.action;
 
 import android.util.Log;
 import com.projet.M1.Json.SendAction;
+import com.projet.M1.Utilisateur.Salle;
 import com.projet.M1.email.Email;
 
 
@@ -13,11 +14,21 @@ public class GestionMail extends Action {
     private String objet;
     private String contenu;
     private String destinataire;
+    private Salle salle;
+    private String idUser;
 
     public GestionMail(String objet, String contenu, String destinataire) {
         this.objet = objet;
         this.contenu = contenu;
         this.destinataire = destinataire;
+    }
+
+    public GestionMail(String objet, String contenu, String destinataire,Salle salle,String idUser) {
+        this.objet = objet;
+        this.contenu = contenu;
+        this.destinataire = destinataire;
+        this.salle = salle;
+        this.idUser = idUser;
     }
 
     public boolean isEnvoye() {
@@ -33,7 +44,7 @@ public class GestionMail extends Action {
             envoieMail.setObjet(objet);
             envoieMail.setContenu(contenu);
             envoieMail.setDestinaire(destinataire);
-            SendAction json = new SendAction("lumiere", "mail");
+            SendAction json = new SendAction("lumiere", "mail",salle,idUser);
             json.runJson();
             envoieMail.execute();
         }

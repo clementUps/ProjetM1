@@ -44,7 +44,6 @@ public class User {
     }
 
      public User(){
-         id = "553651424d95cd6413609bde";
      }
 
     public User(String id){

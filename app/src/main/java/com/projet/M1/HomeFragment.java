@@ -20,6 +20,7 @@ import com.projet.M1.main.R;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -39,13 +40,20 @@ public class HomeFragment extends Fragment {
         TextView nomUtilisateur = (TextView) rootView.findViewById(R.id.nomUtilisateur);
         SharedPreferences settings = getActivity().getSharedPreferences(MainActivity.PREFS_NAME, 0);
         Set<String> users = settings.getStringSet("userLoggin", null);
-        settings = getActivity().getSharedPreferences(MainActivity.PREFS_NAME, 0);
-        JSONObject json = new JSONObject();
         if(users == null){
             nomUtilisateur.setText("Aucun utilisateur détecté. " +
                     "Veuillez vous déconnecter et vous reconnecter");
         }else {
-            nomUtilisateur.setText((String) users.toArray()[0]);
+            Iterator iter = users.iterator();
+            String[]  affiche= {"","Aucun utilisateur détecté. " +
+                    "Veuillez vous déconnecter et vous reconnecter"};
+            while (iter.hasNext()){
+                String splitter = (String)iter.next();
+                if(splitter.contains("nom:")){
+                    affiche  = splitter.split(":");
+                }
+            }
+            nomUtilisateur.setText(affiche[1]);
         }
         Button addModule = (Button) rootView.findViewById(R.id.addModuleButton);
         addModule.setOnClickListener(new View.OnClickListener() {

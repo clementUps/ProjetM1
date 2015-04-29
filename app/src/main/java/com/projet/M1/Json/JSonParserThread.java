@@ -5,6 +5,7 @@ import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -31,7 +32,6 @@ public class JSonParserThread{// extends Thread {//implements Runnable{
     public JSonParserThread(JSONObject json,String adresse){
         this.json = json;
         this.adresse = adresse;
-
     }
 
     public InputStream getIn() {
@@ -55,7 +55,7 @@ public class JSonParserThread{// extends Thread {//implements Runnable{
             /*Checking response */
             if(response!=null){
                 in = response.getEntity().getContent(); //Get the data in the entity
-                Log.e("data json request", " sved");
+                Log.e("data json request", ""+in.toString() );
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -64,6 +64,28 @@ public class JSonParserThread{// extends Thread {//implements Runnable{
         //Looper.loop(); //Loop in the message queue
     }
 
+    public void getJson() {
+        // Looper.prepare(); //For Preparing Message Pool for the child Thread
+        HttpClient client = new DefaultHttpClient();
+        HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+        HttpResponse response;
+
+        try {
+            URI uri = new URI("http", "", ip, port, adresse, "", "");
+            HttpGet get = new HttpGet(uri);
+            response = client.execute(get);
+
+            /*Checking response */
+            if(response!=null){
+                in = response.getEntity().getContent(); //Get the data in the entity
+                Log.e("data json request", ""+in.toString() );
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        //Looper.loop(); //Loop in the message queue
+    }
 
 
   /* @Override
