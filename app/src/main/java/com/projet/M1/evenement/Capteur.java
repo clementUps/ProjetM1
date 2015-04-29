@@ -22,6 +22,15 @@ public abstract class Capteur {
         this.conditions = conditions;
         this.actionAssoc = new ArrayList<Action>();
     }
+
+    public Capteur(String nom, boolean opposite, Conditions conditions) {
+        this.sensorType = -1;
+        this.nom = nom;
+        this.opposite = opposite;
+        this.conditions = conditions;
+        this.actionAssoc = new ArrayList<Action>();
+    }
+
     public int getSensorType(){
         return sensorType;
     }

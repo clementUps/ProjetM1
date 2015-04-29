@@ -16,7 +16,7 @@ public class Localisation extends Capteur{
     private double precision; //precision à laquelle on vérifie la position condition par rapport à la position réelle
 
     public Localisation(String nom, Boolean opposite, Conditions conditions, double latitudeCond, double longitudeCond, double precision) {
-        super(nom, opposite, conditions,-1);
+        super(nom, opposite, conditions, -1);
         this.latitudeCond = latitudeCond;
         this.longitudeCond = longitudeCond;
         this.precision = precision;

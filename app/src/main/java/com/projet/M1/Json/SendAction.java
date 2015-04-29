@@ -44,7 +44,7 @@ public class SendAction extends Thread{//implements Runnable{
             HttpPost post = new HttpPost(uri);
             json.put("evenement",event);
             json.put("action", action);
-            json.put("id", "550fc827e2159aa44a1324ff");
+            json.put("id", "553651424d95cd6413609bde");
             StringEntity se = new StringEntity( json.toString());
             se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
             post.setEntity(se);
@@ -63,7 +63,7 @@ public class SendAction extends Thread{//implements Runnable{
 
     }
 
-    /* public void runJson(){
+    public void runJson(){
          Thread thread  = new Thread(){
              public void run(){
                  sendJson();
@@ -71,7 +71,7 @@ public class SendAction extends Thread{//implements Runnable{
          };
          thread.start();
      }
- */
+
     @Override
     public void run() {
         sendJson();

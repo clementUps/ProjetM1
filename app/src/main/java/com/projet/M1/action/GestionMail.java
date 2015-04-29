@@ -1,12 +1,9 @@
 package com.projet.M1.action;
 
 import android.util.Log;
-
-import com.projet.M1.Json.JSonParserThread;
 import com.projet.M1.Json.SendAction;
 import com.projet.M1.email.Email;
 
-import org.json.JSONObject;
 
 /**
  * Created by Lucas on 17/03/2015.
@@ -36,6 +33,8 @@ public class GestionMail extends Action {
             envoieMail.setObjet(objet);
             envoieMail.setContenu(contenu);
             envoieMail.setDestinaire(destinataire);
+            SendAction json = new SendAction("lumiere", "mail");
+            json.runJson();
             envoieMail.execute();
         }
         envoye = true;
