@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.projet.M1.action.Action;
 import com.projet.M1.action.Actionneur;
@@ -34,6 +35,7 @@ public class Module{
     }
 
     public Module(Capteur capteur,Action action,LocationManager locationManager){
+        Log.i("Constructeur Loca", "OK");
         this.capteur = capteur;
         this.action = action;
         mLocationManager = locationManager;
@@ -70,6 +72,7 @@ public class Module{
             final SensorEventListener mCapteurSensorEventListener = new SensorEventListener() {
                 @Override
                 public void onSensorChanged(SensorEvent event) {
+                   // Log.i("Lumiere", "lux : " + event.values[0]);
                     actionneur.miseAJourCapteur((Luminosite) capteur, event.values[0]);
                     actionneur.gererCapteur();
                 }
@@ -81,9 +84,13 @@ public class Module{
             mSensorManager.registerListener(mCapteurSensorEventListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
         else if (capteur instanceof Localisation) {
+            Log.i("Instance Loca", "OK");
             final LocationListener locationListener = new LocationListener() {
+
                 @Override
                 public void onLocationChanged(Location location) {
+                    Log.i("Instance Loca", "OK");
+                    Log.i("Localisation", "latitude : " + location.getLatitude() + " logititude :" + location.getLongitude());
                     actionneur.miseAJourCapteur((Localisation) capteur, location.getLatitude(), location.getLongitude(), location.getAccuracy());
                     actionneur.gererCapteur();
                 }
@@ -100,6 +107,8 @@ public class Module{
                 public void onProviderDisabled(String provider) {
                 }
             };
+            Log.i("IN Listener", "OK");
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
 
     }

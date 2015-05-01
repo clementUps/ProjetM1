@@ -1,6 +1,7 @@
 package servernode.example.com.projetm1;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -71,9 +72,18 @@ public class Geolocalisation extends Fragment {
             @Override
             public void onClick(View v) {
                 EditText champPrecision = (EditText) view.findViewById(R.id.editText4);
-                double precision = Double.parseDouble(champPrecision.getText().toString());
+                double precision = 0.0;
+                if (champPrecision.getText().toString().length() > 0) {
+                    precision = Double.parseDouble(champPrecision.getText().toString());
+                }
                 Localisation newLoc = new Localisation("Test", false, Conditions.IF_THEN,
                         mMark.getPosition().latitude, mMark.getPosition().longitude,precision);
+                CreationModule fragment = new CreationModule();
+                Communicator communication  = (Communicator)getActivity();
+                communication.setCapteur(newLoc);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, fragment).commit();
             }
         });
     }

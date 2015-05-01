@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.projet.M1.Module.Module;
 import com.projet.M1.Module.ModuleException;
 import com.projet.M1.action.Action;
 import com.projet.M1.evenement.Capteur;
+import com.projet.M1.evenement.Localisation;
+import com.projet.M1.evenement.Luminosite;
 import com.projet.M1.main.R;
 
 
@@ -108,9 +112,18 @@ public class CreationModule extends Fragment {
 
     public void creationModule(){
         Communicator com = (Communicator)getActivity();
-        final Module module = new Module(com.getCapteur(),com.getAction(),(SensorManager) getActivity().getSystemService(( getActivity()).SENSOR_SERVICE));
+        final Module module;
+
+        if (com.getCapteur() instanceof Luminosite) {
+            module = new Module(com.getCapteur(), com.getAction(), (SensorManager) getActivity().getSystemService((getActivity()).SENSOR_SERVICE));
+        } else if (com.getCapteur() instanceof Localisation) {
+            module = new Module(com.getCapteur(), com.getAction(), (LocationManager)getActivity().getSystemService((getActivity()).LOCATION_SERVICE));
+        } else {
+            module = null;
+        }
         Thread thread  = new Thread() {
             public void run() {
+                Looper.prepare();
                 android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
                 try {
                     module.init();

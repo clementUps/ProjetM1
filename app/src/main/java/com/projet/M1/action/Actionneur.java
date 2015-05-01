@@ -80,14 +80,15 @@ public class Actionneur {
                 for (Action act : c.getActionAssoc())
                 {
                     if (act instanceof GestionMail)
-                        if(((Localisation) c).getLatitude() + ((Localisation) c).getPrecision() >=
+                        if(((Localisation) c).getLatitude() + ((Localisation) c).getPrecision() * 0.001 >=
                                 ((Localisation) c).getLatitudeCond() ||
-                                ((Localisation) c).getLatitude() - ((Localisation) c).getPrecision() >=
+                                ((Localisation) c).getLatitude() - ((Localisation) c).getPrecision() * 0.001 >=
                         ((Localisation) c).getLatitudeCond()) {
-                            if (((Localisation) c).getLongitude() + ((Localisation) c).getPrecision() >=
+                            if (((Localisation) c).getLongitude() + ((Localisation) c).getPrecision() * 0.001 >=
                                     ((Localisation) c).getLongitudeCond() ||
-                            ((Localisation) c).getLongitude() - ((Localisation) c).getPrecision() >=
+                            ((Localisation) c).getLongitude() - ((Localisation) c).getPrecision() * 0.001 >=
                                     ((Localisation) c).getLongitudeCond()) {
+                                Log.i("ICI", "ICIIIIIIIIIIIIII");
                                 act.actionner();
                             }
                         }
